@@ -1,0 +1,39 @@
+## Configure 'ip' variable to bind kubernetes services on a
+## different ip than the default iface
+## We should set etcd_member_name for etcd cluster. The node that is not a etcd member do not need to set the value, or can set the empty string value.
+[all]
+master ansible_host=192.168.56.100
+worker1 ansible_host=192.168.56.101
+worker2 ansible_host=192.168.56.102
+
+[all:vars]
+ssh_user=vagrant
+ssh_home_dir=/home/vagrant
+ssh_private_key_file=~/.ssh/id_rsa
+
+cidr_v=10.244.0.0/16
+containerd_packages=["docker-ce", "docker-ce-cli", "containerd.io", "docker-buildx-plugin", "docker-compose-plugin"]
+aptrepo=["apt-transport-https", "ca-certificates", "curl", "software-properties-common", "gnupg2"]
+k8s_version="1.29"
+packages=["kubeadm", "kubelet", "kubectl"]
+services=["docker", "kubelet"]
+token_execute_file="join_token.sh"
+
+
+# [bastion]
+# bastion ansible_host=x.x.x.x ansible_user=some_user
+
+[kube_control_plane]
+master
+
+[kube_node]
+worker1
+worker2
+
+
+[test_local]
+master
+
+[test_remote]
+worker1
+

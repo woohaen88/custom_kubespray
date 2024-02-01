@@ -11,14 +11,14 @@ ssh_user=vagrant
 ssh_home_dir=/home/vagrant
 ssh_private_key_file=~/.ssh/id_rsa
 
-cidr_v=10.244.0.0/16
+cidr_v=192.168.0.0/16
 containerd_packages=["docker-ce", "docker-ce-cli", "containerd.io", "docker-buildx-plugin", "docker-compose-plugin"]
 aptrepo=["apt-transport-https", "ca-certificates", "curl", "software-properties-common", "gnupg2"]
 k8s_version="1.29"
 packages=["kubeadm", "kubelet", "kubectl"]
 services=["docker", "kubelet"]
 token_execute_file="join_token.sh"
-calico_manifests_url="https://raw.githubusercontent.com/projectcalico/calico/v3.26.4/manifests/tigera-operator.yaml"
+calico_manifests_url="https://raw.githubusercontent.com/projectcalico/calico/v3.27.0/manifests/calico.yaml"
 
 
 # [bastion]

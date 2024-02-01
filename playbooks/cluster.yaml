@@ -4,8 +4,10 @@
   tasks:
     - name: "kubectl apply calico"
       become: true
-      shell: "kubectl create -f https://raw.githubusercontent.com/projectcalico/calico/v3.27.0/manifests/calico-typha.yaml"    
-
+      become_method: sudo
+      become_user: "{{ ssh_user }}"
+      shell: "kubectl create -f {{ calico_manifests_url }}"
+    
     - name: "Storing Join Command"
       shell: "kubeadm token create --print-join-command > {{ ssh_home_dir }}/{{ token_execute_file  }}"
 
@@ -23,7 +25,10 @@
         mode: "0755"
 
     - name: "Joining Worker Nodes iwth Kubernetes master"      
-      shell: 
+      become: true
+      become_user: "{{ ssh_user }}"
+      become_method: sudo
+      shell:
         cmd: "{{ ssh_home_dir }}/{{ token_execute_file }}"
 
     - name: "Clearing Token File"

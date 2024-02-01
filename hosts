@@ -18,6 +18,7 @@ k8s_version="1.29"
 packages=["kubeadm", "kubelet", "kubectl"]
 services=["docker", "kubelet"]
 token_execute_file="join_token.sh"
+calico_manifests_url="https://raw.githubusercontent.com/projectcalico/calico/v3.26.4/manifests/tigera-operator.yaml"
 
 
 # [bastion]

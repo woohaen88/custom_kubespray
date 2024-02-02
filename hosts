@@ -11,7 +11,8 @@ ssh_user=vagrant
 ssh_home_dir=/home/vagrant
 ssh_private_key_file=~/.ssh/id_rsa
 
-cidr_v=192.168.0.0/16
+cidr_v=10.96.0.0/12
+ip_addr=192.168.56.100
 containerd_packages=["docker-ce", "docker-ce-cli", "containerd.io", "docker-buildx-plugin", "docker-compose-plugin"]
 aptrepo=["apt-transport-https", "ca-certificates", "curl", "software-properties-common", "gnupg2"]
 k8s_version="1.29"
